@@ -24,3 +24,10 @@ jobs:
 
     - name: Run the program
       run: ./main
+
+    - name: Archive executable
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: main-executable
+        path: ./main
