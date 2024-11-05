@@ -2,11 +2,11 @@ name: C++ Build
 
 on:
   push:
-    paths:
-      - 'assignments/**'  # Trigger only on changes inside the 'assignments' folder
+    branches:
+      - master
   pull_request:
-    paths:
-      - 'assignments/**'  # Trigger only on pull requests with changes in 'assignments' folder
+    branches:
+      - master
 
 jobs:
   build:
@@ -15,16 +15,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      with:
-        path: assignments  # Check out code into 'assignments' subfolder
 
     - name: Install build dependencies
       run: sudo apt-get install g++
 
-    - name: Build C++ program in assignments
-      working-directory: assignments  # Set working directory to 'assignments'
+    - name: Build C++ program
       run: g++ main.cpp -o main
 
     - name: Run the program
-      working-directory: assignments  # Set working directory to 'assignments'
       run: ./main
